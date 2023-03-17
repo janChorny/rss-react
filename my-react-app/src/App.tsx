@@ -1,17 +1,19 @@
 import './App.css';
 import React from 'react';
-import { Product } from './components/product';
-import { products } from './data/products';
+import { ProductsPage } from './pages/ProductsPage';
+import { Route, Routes } from 'react-router-dom';
+import { AboutPage } from './pages/AboutPage';
+import { Navigation } from './components/Navigation';
 
 function App() {
   return (
-    <div>
-      {products.map((product) => (
-        <Product product={product} key={product.id} />
-      ))}
-      {/* <Product product={products[0]} />
-      <Product product={products[1]} /> */}
-    </div>
+    <>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<ProductsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </>
   );
 }
 

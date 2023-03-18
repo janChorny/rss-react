@@ -1,5 +1,5 @@
 import './product.css';
-import { ProductModel } from 'models';
+import { ProductModel } from 'models/models';
 import React from 'react';
 
 interface ProductProps {

@@ -1,0 +1,14 @@
+.footer__container {
+	padding: 0 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.footer__link-address {
+  color: grey;
+}
+@media (max-width: 480px){
+	.footer__container {
+		flex-direction: column-reverse;
+	}
+}

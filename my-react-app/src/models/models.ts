@@ -12,3 +12,7 @@ export interface RatingModel {
   rate: number;
   count: number;
 }
+
+export interface ProductProps {
+  product: ProductModel;
+}

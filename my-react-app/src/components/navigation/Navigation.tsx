@@ -7,6 +7,7 @@ export class Navigation extends Component {
     return (
       <nav className="navigation">
         <NavLink
+          className="navigation-link"
           to="/"
           style={({ isActive }) =>
             isActive
@@ -19,6 +20,7 @@ export class Navigation extends Component {
           Products
         </NavLink>
         <NavLink
+          className="navigation-link"
           to="/about"
           style={({ isActive }) =>
             isActive

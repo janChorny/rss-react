@@ -49,3 +49,10 @@ body {
 .main {
   flex: 1 1 auto;
 }
+
+.page-header {
+  margin: 1rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: grey;
+}

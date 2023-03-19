@@ -11,12 +11,12 @@ git clone https://github.com/janChorny/rss-react.git
 ```
 cd rss-react
 ```
-```
-cd my-react-app
-```
 3. Switch to "components" branch
 ```
 git checkout components
+```
+```
+cd my-react-app
 ```
 3. Install dependencies
 ```

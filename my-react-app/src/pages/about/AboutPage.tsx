@@ -1,7 +1,12 @@
+import { PageTitleProps } from 'models/models';
 import React, { Component } from 'react';
 import './AboutPage.css';
 
-export class AboutPage extends Component {
+export class AboutPage extends Component<PageTitleProps> {
+  componentDidMount() {
+    this.props.setTitle('About page');
+  }
+
   render() {
     return (
       <div>

@@ -2,8 +2,13 @@ import { MyInput } from '../../components/input/MyInput';
 import React, { Component } from 'react';
 import { Products } from '../../components/products/Products';
 import './MainPage.css';
+import { PageTitleProps } from 'models/models';
 
-export class MainPage extends Component {
+export class MainPage extends Component<PageTitleProps> {
+  componentDidMount() {
+    this.props.setTitle('About page');
+  }
+
   render() {
     return (
       <div>

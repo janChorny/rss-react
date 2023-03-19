@@ -16,3 +16,11 @@ export interface RatingModel {
 export interface ProductProps {
   product: ProductModel;
 }
+
+export interface PageTitleProps {
+  setTitle: (namePage: string) => void;
+}
+
+export interface GeneralState {
+  pageTitle: string;
+}

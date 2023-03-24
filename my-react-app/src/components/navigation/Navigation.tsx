@@ -32,6 +32,19 @@ export class Navigation extends Component {
         >
           About
         </NavLink>
+        <NavLink
+          className="navigation-link"
+          to="/forms"
+          style={({ isActive }) =>
+            isActive
+              ? {
+                  color: 'white',
+                }
+              : {}
+          }
+        >
+          Forms
+        </NavLink>
       </nav>
     );
   }

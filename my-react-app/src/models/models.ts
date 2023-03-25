@@ -26,22 +26,27 @@ export interface GeneralState {
 }
 
 export interface FormInput {
-  id: number;
+  id?: number;
   title: string;
-  date: string;
-  status: string;
-  category: string;
-  imageUrl: string;
+  // date: string;
+  // status: string;
+  // category: string;
+  // imageUrl: string;
 }
 
-export interface FormCard {
+export interface FormCardInput {
   card: FormInput;
 }
 
-export interface FormPageState {
+export interface FormCards {
   cards: FormInput[];
 }
 
 export type FormProps = {
-  addCard: (newCard: FormCard) => void;
+  addCard: (newCard: FormInput) => void;
 };
+
+export interface FormValidState {
+  inputTitleValid: boolean;
+  statusValid: boolean;
+}

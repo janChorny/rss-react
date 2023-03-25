@@ -1,29 +1,60 @@
-import { FormProps } from 'models/models';
+import { FormProps, FormValidState } from 'models/models';
 import React from 'react';
+import { validateText } from '../../utils/FormsValidation';
 
-export class SimpleForm extends React.Component<FormProps> {
-  input: React.RefObject<HTMLInputElement>;
+export class SimpleForm extends React.Component<FormProps, FormValidState> {
+  formRef: React.RefObject<HTMLFormElement> = React.createRef();
+  inputTitleRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   constructor(props: FormProps) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
+    this.state = {
+      inputTitleValid: true,
+      statusValid: false,
+    };
   }
 
-  handleSubmit(event: { preventDefault: () => void }) {
-    const resultTitle = this.input.current?.value ?? '';
-    alert('Отправленное имя: ' + resultTitle);
-    event.preventDefault();
+  checkFormFields() {
+    const titleValid = validateText(this.inputTitleRef?.current?.value ?? '');
+    this.setState({ inputTitleValid: titleValid });
+    if (titleValid) {
+      this.setState({ statusValid: true });
+      return true;
+    }
+    return false;
   }
+
+  formSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const checkedForm = this.checkFormFields();
+    if (!checkedForm) return;
+
+    const newCardTitle = this.inputTitleRef.current?.value ?? '';
+    const newCard = {
+      id: Date.now(),
+      title: newCardTitle,
+    };
+
+    this.props.addCard(newCard);
+  };
 
   render() {
+    const { inputTitleValid } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Имя:
-          <input type="text" ref={this.input} />
-        </label>
-        <input type="submit" value="Отправить" />
+      <form onSubmit={this.formSubmit} ref={this.formRef}>
+        <div>
+          <label htmlFor="form-title">
+            Title: {!inputTitleValid && <span>Error! Min 4 letters</span>}
+          </label>
+          <input
+            type="text"
+            id="form-title"
+            ref={this.inputTitleRef}
+            placeholder="title"
+            autoComplete="off"
+          />
+        </div>
+        <button type="submit">Add new card</button>
       </form>
     );
   }

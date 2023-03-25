@@ -9,3 +9,8 @@ export const validateDate = (date: string) => {
   }
   return false;
 };
+
+export const validateCountry = (country: string) => {
+  if (country.length) return true;
+  return false;
+};

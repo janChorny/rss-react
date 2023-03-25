@@ -7,13 +7,14 @@ export class FormCard extends Component<FormCardInput> {
   }
 
   render() {
-    const { title, date } = this.props.card;
+    const { title, date, country } = this.props.card;
 
     return (
       <div>
         <div>
           <h3>{title}</h3>
           <div>{date}</div>
+          <div>{country}</div>
         </div>
       </div>
     );

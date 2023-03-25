@@ -10,36 +10,29 @@ export class FormsPage extends Component<PageTitleProps, FormCards> {
     this.state = {
       cards: [],
     };
-    this.onAddCard = this.onAddCard.bind(this);
+    this.addNewCard = this.addNewCard.bind(this);
   }
 
   componentDidMount() {
     this.props.setTitle('Forms page');
   }
 
-  onAddCard = (newProduct: FormInput) => {
-    const { cards } = this.state;
-    const newProducts = [...cards, newProduct];
-
-    this.setState({
-      cards: newProducts,
-    });
+  addNewCard = (newCard: FormInput) => {
+    this.setState((cardsContainer) => ({
+      cards: [...cardsContainer.cards, newCard],
+    }));
   };
 
   render() {
     const { cards } = this.state;
     return (
-      <div className="form-page">
-        <h3>Form page</h3>
-        <SimpleForm addCard={this.onAddCard} />
-        <div className="form-cards-container">
-          {cards.length ? (
-            cards.map((card) => {
-              return <FormCard key={card.id} card={{ ...card }} />;
-            })
-          ) : (
-            <div>No products...</div>
-          )}
+      <div>
+        <h1 className="page-header">Form page</h1>
+        <SimpleForm addCard={this.addNewCard} />
+        <div>
+          {cards.map((card) => {
+            return <FormCard key={card.id} card={{ ...card }} />;
+          })}
         </div>
       </div>
     );

@@ -28,7 +28,7 @@ export interface GeneralState {
 export interface FormInput {
   id?: number;
   title: string;
-  // date: string;
+  date: string;
   // status: string;
   // category: string;
   // imageUrl: string;
@@ -48,5 +48,6 @@ export type FormProps = {
 
 export interface FormValidState {
   inputTitleValid: boolean;
+  inputDateValid: boolean;
   statusValid: boolean;
 }

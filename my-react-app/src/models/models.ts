@@ -24,3 +24,24 @@ export interface PageTitleProps {
 export interface GeneralState {
   pageTitle: string;
 }
+
+export interface FormInput {
+  id: number;
+  title: string;
+  date: string;
+  status: string;
+  category: string;
+  imageUrl: string;
+}
+
+export interface FormCard {
+  card: FormInput;
+}
+
+export interface FormPageState {
+  cards: FormInput[];
+}
+
+export type FormProps = {
+  addCard: (newCard: FormCard) => void;
+};

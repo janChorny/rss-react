@@ -27,7 +27,7 @@ export class FormsPage extends Component<PageTitleProps, FormCards> {
     const { cards } = this.state;
     return (
       <div className="form-page">
-        <h1 className="page-header">Form page</h1>
+        <h1 className="page-header">Forms page</h1>
         <div className="form-container">
           <SimpleForm addCard={this.addNewCard} />
         </div>

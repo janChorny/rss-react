@@ -4,6 +4,7 @@ import {
   validateCountry,
   validateDate,
   validatePayment,
+  validatePicture,
   validateText,
 } from '../../utils/FormsValidation';
 
@@ -17,6 +18,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
   inputDeliveryRef: React.RefObject<HTMLInputElement> = React.createRef();
   inputCashPayRef: React.RefObject<HTMLInputElement> = React.createRef();
   inputCardPayRef: React.RefObject<HTMLInputElement> = React.createRef();
+  inputPictureRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   constructor(props: FormProps) {
     super(props);
@@ -28,6 +30,8 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
       inputTransferValid: true,
       inputDeliveryValid: true,
       inputPayValid: true,
+      inputPictureValid: true,
+      inputPictureUrl: '',
       formValid: false,
     };
   }
@@ -57,6 +61,9 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     if (this.inputCardPayRef.current) {
       this.inputCardPayRef.current.checked = false;
     }
+    if (this.inputPictureRef.current) {
+      this.inputPictureRef.current.value = '';
+    }
   }
 
   checkFormFields() {
@@ -67,6 +74,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     const deliveryValid = this.inputDeliveryRef.current?.checked ?? false;
     const transferValid = this.inputTransferRef.current?.checked ?? false;
     const payValid = validatePayment(this.inputCashPayRef, this.inputCardPayRef);
+    const pictureValid = validatePicture(this.inputPictureRef?.current?.value ?? '');
     this.setState({ inputTitleValid: titleValid });
     this.setState({ inputDateValid: dateValid });
     this.setState({ inputCountryValid: countryValid });
@@ -74,7 +82,8 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     this.setState({ inputDeliveryValid: deliveryValid });
     this.setState({ inputTransferValid: transferValid });
     this.setState({ inputPayValid: payValid });
-    if (titleValid && dateValid && countryValid && payValid) {
+    this.setState({ inputPictureValid: pictureValid });
+    if (titleValid && dateValid && countryValid && payValid && pictureValid) {
       this.setState({ formValid: true });
       return true;
     }
@@ -94,6 +103,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     const newCardTransfer = this.inputTransferRef.current?.checked ?? false;
     const newCardCashPay = this.inputCashPayRef.current?.checked;
     const newCardCardPay = this.inputCardPayRef.current?.checked;
+    const newCardPicture = this.inputPictureRef.current?.files?.[0];
     let newCardPay = '';
     if (newCardCashPay && !newCardCardPay && this.inputCashPayRef.current) {
       newCardPay = this.inputCashPayRef.current?.value;
@@ -110,6 +120,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
       delivery: newCardDelivery,
       transfer: newCardTransfer,
       pay: newCardPay,
+      profilePicture: (newCardPicture && URL.createObjectURL(newCardPicture)) ?? '',
     };
 
     this.props.addCard(newCard);
@@ -117,14 +128,18 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
   };
 
   render() {
-    const { inputTitleValid, inputDateValid, inputCountryValid, inputPayValid, formValid } =
-      this.state;
+    const {
+      inputTitleValid,
+      inputDateValid,
+      inputCountryValid,
+      inputPayValid,
+      inputPictureValid,
+      formValid,
+    } = this.state;
     return (
       <form onSubmit={this.formSubmit} ref={this.formRef}>
         <div>
-          <label htmlFor="form__title">
-            Title: {!inputTitleValid && <span>Error! Min 4 letters</span>}
-          </label>
+          <label htmlFor="form__title">Title:</label>
           <input
             type="text"
             id="form__title"
@@ -132,11 +147,10 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             placeholder="title"
             autoComplete="off"
           />
+          {!inputTitleValid && <span>Error! Min 4 letters</span>}
         </div>
         <div>
-          <label htmlFor="form__date">
-            Date: {!inputDateValid && <span>Error! No future date is allowed</span>}
-          </label>
+          <label htmlFor="form__date">Date:</label>
           <input
             type="text"
             id="form__date"
@@ -144,11 +158,10 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             placeholder="day.month.year"
             autoComplete="off"
           />
+          {!inputDateValid && <span>Error! No future date is allowed</span>}
         </div>
         <div>
-          <label htmlFor="form__country">
-            Country: {!inputCountryValid && <span>Error! No country selected</span>}
-          </label>
+          <label htmlFor="form__country">Country:</label>
           <select id="form__country" ref={this.inputCountryRef} defaultValue="">
             <option disabled></option>
             <option value="USA">USA</option>
@@ -156,6 +169,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             <option value="Mexico">Mexico</option>
             <option value="Germany">Germany</option>
           </select>
+          {!inputCountryValid && <span>Error! No country selected</span>}
         </div>
         <div>
           Additional options:
@@ -195,6 +209,10 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             Card
           </label>
           {!inputPayValid && <span>Error. Select any option</span>}
+        </div>
+        <div>
+          <input type="file" ref={this.inputPictureRef} />
+          {!inputPictureValid && <span>Error. Check selected picture</span>}
         </div>
         <button type="submit">Add new card</button>
         {formValid && <span>Data has been saved</span>}

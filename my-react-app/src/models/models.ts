@@ -34,9 +34,7 @@ export interface FormInput {
   transfer: boolean;
   delivery: boolean;
   pay: string;
-  // status: string;
-  // category: string;
-  // imageUrl: string;
+  profilePicture: string;
 }
 
 export interface FormCardInput {
@@ -60,4 +58,6 @@ export interface FormValidState {
   inputDeliveryValid: boolean;
   inputPayValid: boolean;
   formValid: boolean;
+  inputPictureValid: boolean;
+  inputPictureUrl: string;
 }

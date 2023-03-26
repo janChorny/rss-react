@@ -24,3 +24,8 @@ export const validatePayment = (
   }
   return false;
 };
+
+export const validatePicture = (picture: string) => {
+  if (picture.length) return true;
+  return false;
+};

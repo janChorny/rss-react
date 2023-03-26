@@ -7,7 +7,7 @@ export class FormCard extends Component<FormCardInput> {
   }
 
   render() {
-    const { title, date, country, pack, delivery, transfer, pay } = this.props.card;
+    const { title, date, country, pack, delivery, transfer, pay, profilePicture } = this.props.card;
 
     return (
       <div>
@@ -21,6 +21,15 @@ export class FormCard extends Component<FormCardInput> {
             {transfer && <span>transfer</span>}
           </div>
           <div>{pay}</div>
+          <div>
+            <img
+              src={profilePicture}
+              alt={profilePicture.slice(
+                profilePicture.lastIndexOf('/') + 1,
+                profilePicture.lastIndexOf('.')
+              )}
+            />
+          </div>
         </div>
       </div>
     );

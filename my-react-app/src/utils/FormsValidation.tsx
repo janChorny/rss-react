@@ -14,3 +14,13 @@ export const validateCountry = (country: string) => {
   if (country.length) return true;
   return false;
 };
+
+export const validatePayment = (
+  firstRadio: React.RefObject<HTMLInputElement>,
+  secondRadio: React.RefObject<HTMLInputElement>
+) => {
+  if (firstRadio.current?.checked || secondRadio.current?.checked) {
+    return true;
+  }
+  return false;
+};

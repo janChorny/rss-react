@@ -1,6 +1,11 @@
 import { FormProps, FormValidState } from 'models/models';
 import React from 'react';
-import { validateCountry, validateDate, validateText } from '../../utils/FormsValidation';
+import {
+  validateCountry,
+  validateDate,
+  validatePayment,
+  validateText,
+} from '../../utils/FormsValidation';
 
 export class SimpleForm extends React.Component<FormProps, FormValidState> {
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
@@ -10,6 +15,8 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
   inputPackageRef: React.RefObject<HTMLInputElement> = React.createRef();
   inputTransferRef: React.RefObject<HTMLInputElement> = React.createRef();
   inputDeliveryRef: React.RefObject<HTMLInputElement> = React.createRef();
+  inputCashPayRef: React.RefObject<HTMLInputElement> = React.createRef();
+  inputCardPayRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   constructor(props: FormProps) {
     super(props);
@@ -20,6 +27,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
       inputPackageValid: true,
       inputTransferValid: true,
       inputDeliveryValid: true,
+      inputPayValid: true,
       statusValid: false,
     };
   }
@@ -31,13 +39,15 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     const packageValid = this.inputPackageRef.current?.checked ?? false;
     const deliveryValid = this.inputDeliveryRef.current?.checked ?? false;
     const transferValid = this.inputTransferRef.current?.checked ?? false;
+    const payValid = validatePayment(this.inputCashPayRef, this.inputCardPayRef);
     this.setState({ inputTitleValid: titleValid });
     this.setState({ inputDateValid: dateValid });
     this.setState({ inputCountryValid: countryValid });
     this.setState({ inputPackageValid: packageValid });
     this.setState({ inputDeliveryValid: deliveryValid });
     this.setState({ inputTransferValid: transferValid });
-    if (titleValid && dateValid && countryValid) {
+    this.setState({ inputPayValid: payValid });
+    if (titleValid && dateValid && countryValid && payValid) {
       this.setState({ statusValid: true });
       return true;
     }
@@ -55,6 +65,15 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     const newCardPackage = this.inputPackageRef.current?.checked ?? false;
     const newCardDelivery = this.inputDeliveryRef.current?.checked ?? false;
     const newCardTransfer = this.inputTransferRef.current?.checked ?? false;
+    const newCardCashPay = this.inputCashPayRef.current?.checked;
+    const newCardCardPay = this.inputCardPayRef.current?.checked;
+    let newCardPay = '';
+    if (newCardCashPay && !newCardCardPay && this.inputCashPayRef.current) {
+      newCardPay = this.inputCashPayRef.current?.value;
+    } else if (!newCardCashPay && newCardCardPay && this.inputCardPayRef.current) {
+      newCardPay = this.inputCardPayRef.current?.value;
+    }
+
     const newCard = {
       id: Date.now(),
       title: newCardTitle,
@@ -63,13 +82,14 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
       pack: newCardPackage,
       delivery: newCardDelivery,
       transfer: newCardTransfer,
+      pay: newCardPay,
     };
-    console.log(newCard);
+
     this.props.addCard(newCard);
   };
 
   render() {
-    const { inputTitleValid, inputDateValid, inputCountryValid } = this.state;
+    const { inputTitleValid, inputDateValid, inputCountryValid, inputPayValid } = this.state;
     return (
       <form onSubmit={this.formSubmit} ref={this.formRef}>
         <div>
@@ -123,6 +143,31 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             Transfer
           </label>
         </div>
+        <div>
+          Payment options:
+          <label htmlFor="form__cash-pay">
+            <input
+              type="radio"
+              id="form__cash-pay"
+              value="cash"
+              name="pay"
+              ref={this.inputCashPayRef}
+            />
+            Cash
+          </label>
+          <label htmlFor="form__card-pay">
+            <input
+              type="radio"
+              id="form__card-pay"
+              value="Card"
+              name="cay"
+              ref={this.inputCardPayRef}
+            />
+            Card
+          </label>
+          {!inputPayValid && <span>Error. Select any option</span>}
+        </div>
+
         <button type="submit">Add new card</button>
       </form>
     );

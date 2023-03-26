@@ -7,7 +7,7 @@ export class FormCard extends Component<FormCardInput> {
   }
 
   render() {
-    const { title, date, country, pack, delivery, transfer } = this.props.card;
+    const { title, date, country, pack, delivery, transfer, pay } = this.props.card;
 
     return (
       <div>
@@ -20,6 +20,7 @@ export class FormCard extends Component<FormCardInput> {
             {delivery && <span>delivery</span>}
             {transfer && <span>transfer</span>}
           </div>
+          <div>{pay}</div>
         </div>
       </div>
     );

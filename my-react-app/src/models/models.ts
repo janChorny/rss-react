@@ -33,6 +33,7 @@ export interface FormInput {
   pack: boolean;
   transfer: boolean;
   delivery: boolean;
+  pay: string;
   // status: string;
   // category: string;
   // imageUrl: string;
@@ -57,5 +58,6 @@ export interface FormValidState {
   inputPackageValid: boolean;
   inputTransferValid: boolean;
   inputDeliveryValid: boolean;
+  inputPayValid: boolean;
   statusValid: boolean;
 }

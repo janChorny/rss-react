@@ -7,6 +7,7 @@ import {
   validatePicture,
   validateText,
 } from '../../utils/FormsValidation';
+import './simpleForm.css';
 
 export class SimpleForm extends React.Component<FormProps, FormValidState> {
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
@@ -137,59 +138,102 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
       formValid,
     } = this.state;
     return (
-      <form onSubmit={this.formSubmit} ref={this.formRef}>
-        <div>
-          <label htmlFor="form__title">Title:</label>
+      <form className="form" onSubmit={this.formSubmit} ref={this.formRef}>
+        <div className="form__title form-block">
+          <label className="form__title--label form-label" htmlFor="form__title-input">
+            Title:
+          </label>
           <input
+            className="form__title--input form-input"
             type="text"
-            id="form__title"
+            id="form__title-input"
             ref={this.inputTitleRef}
             placeholder="title"
             autoComplete="off"
           />
-          {!inputTitleValid && <span>Error! Min 4 letters</span>}
+          {!inputTitleValid && (
+            <span className="form__title--span error-span">Error! Min 4 letters</span>
+          )}
         </div>
-        <div>
-          <label htmlFor="form__date">Date:</label>
+        <div className="form__date form-block">
+          <label className="form__date--label form-label" htmlFor="form__date">
+            Date:
+          </label>
           <input
+            className="form__date--input form-input"
             type="text"
             id="form__date"
             ref={this.inputDateRef}
             placeholder="day.month.year"
             autoComplete="off"
           />
-          {!inputDateValid && <span>Error! No future date is allowed</span>}
+          {!inputDateValid && (
+            <span className="form__date--span error-span">Error! No future date is allowed</span>
+          )}
         </div>
-        <div>
-          <label htmlFor="form__country">Country:</label>
-          <select id="form__country" ref={this.inputCountryRef} defaultValue="">
-            <option disabled></option>
-            <option value="USA">USA</option>
-            <option value="Canada">Canada</option>
-            <option value="Mexico">Mexico</option>
-            <option value="Germany">Germany</option>
+        <div className="form__country form-block">
+          <label className="form__country--label form-label" htmlFor="form__country">
+            Country:
+          </label>
+          <select
+            className="form__country--select form-select"
+            id="form__country"
+            ref={this.inputCountryRef}
+            defaultValue=""
+          >
+            <option className="form__country--option" disabled></option>
+            <option className="form__country--option" value="USA">
+              USA
+            </option>
+            <option className="form__country--option" value="Canada">
+              Canada
+            </option>
+            <option className="form__country--option" value="Mexico">
+              Mexico
+            </option>
+            <option className="form__country--option" value="Germany">
+              Germany
+            </option>
           </select>
-          {!inputCountryValid && <span>Error! No country selected</span>}
+          {!inputCountryValid && (
+            <span className="form__country--span error-span">Error! No country selected</span>
+          )}
         </div>
-        <div>
+        <div className="form__additional form-block">
           Additional options:
-          <label htmlFor="form__package">
-            <input type="checkbox" id="form__package" ref={this.inputPackageRef} />
+          <label className="form__additional--label form-label" htmlFor="form__package">
+            <input
+              className="form__additional--input form-input"
+              type="checkbox"
+              id="form__package"
+              ref={this.inputPackageRef}
+            />
             Package
           </label>
-          <label htmlFor="form__delivery">
-            <input type="checkbox" id="form__delivery" ref={this.inputDeliveryRef} />
+          <label className="form__additional form-label" htmlFor="form__delivery">
+            <input
+              className="form__additional--input form-input"
+              type="checkbox"
+              id="form__delivery"
+              ref={this.inputDeliveryRef}
+            />
             Delivery
           </label>
-          <label htmlFor="form__transfer">
-            <input type="checkbox" id="form__transfer" ref={this.inputTransferRef} />
+          <label className="form__additional form-label" htmlFor="form__transfer">
+            <input
+              className="form__additional--input form-input"
+              type="checkbox"
+              id="form__transfer"
+              ref={this.inputTransferRef}
+            />
             Transfer
           </label>
         </div>
-        <div>
+        <div className="form__payment form-block">
           Payment options:
-          <label htmlFor="form__cash-pay">
+          <label className="form__payment--label form-label" htmlFor="form__cash-pay">
             <input
+              className="form__payment--input form-input"
               type="radio"
               id="form__cash-pay"
               value="cash"
@@ -198,24 +242,35 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             />
             Cash
           </label>
-          <label htmlFor="form__card-pay">
+          <label className="form__payment--label form-label" htmlFor="form__card-pay">
             <input
+              className="form__payment--input form-input"
               type="radio"
               id="form__card-pay"
               value="card"
-              name="cay"
+              name="pay"
               ref={this.inputCardPayRef}
             />
             Card
           </label>
-          {!inputPayValid && <span>Error. Select any option</span>}
+          {!inputPayValid && (
+            <span className="form__payment--span error-span">Error. Select any option</span>
+          )}
         </div>
-        <div>
-          <input type="file" ref={this.inputPictureRef} />
-          {!inputPictureValid && <span>Error. Check selected picture</span>}
+        <div className="form__picture form-block">
+          <input
+            className="form__picture--input form-input"
+            type="file"
+            ref={this.inputPictureRef}
+          />
+          {!inputPictureValid && (
+            <span className="form__picture--span error-span">Error. Check selected picture</span>
+          )}
         </div>
-        <button type="submit">Add new card</button>
-        {formValid && <span>Data has been saved</span>}
+        <button className="form__button" type="submit">
+          Add new card
+        </button>
+        {formValid && <span className="form__submit--span message-span">Data has been saved</span>}
       </form>
     );
   }

@@ -1,8 +1,8 @@
 import { FormCards, FormInput, PageTitleProps } from 'models/models';
 import React, { Component } from 'react';
 import './FormsPage.css';
-import { SimpleForm } from '../../components/simpleForm/simpleForm';
 import { FormCard } from '../../components/formCard/FormCard';
+import { SimpleForm } from '../../components/simpleForm/simpleForm';
 
 export class FormsPage extends Component<PageTitleProps, FormCards> {
   constructor(props: PageTitleProps) {
@@ -26,10 +26,12 @@ export class FormsPage extends Component<PageTitleProps, FormCards> {
   render() {
     const { cards } = this.state;
     return (
-      <div>
+      <div className="form-page">
         <h1 className="page-header">Form page</h1>
-        <SimpleForm addCard={this.addNewCard} />
-        <div>
+        <div className="form-container">
+          <SimpleForm addCard={this.addNewCard} />
+        </div>
+        <div className="card-container">
           {cards.map((card) => {
             return <FormCard key={card.id} card={{ ...card }} />;
           })}

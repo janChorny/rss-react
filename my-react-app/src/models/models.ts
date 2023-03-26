@@ -59,5 +59,5 @@ export interface FormValidState {
   inputTransferValid: boolean;
   inputDeliveryValid: boolean;
   inputPayValid: boolean;
-  statusValid: boolean;
+  formValid: boolean;
 }

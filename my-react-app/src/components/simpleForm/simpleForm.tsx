@@ -28,8 +28,35 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
       inputTransferValid: true,
       inputDeliveryValid: true,
       inputPayValid: true,
-      statusValid: false,
+      formValid: false,
     };
+  }
+
+  clearFormInputs() {
+    if (this.inputTitleRef.current) {
+      this.inputTitleRef.current.value = '';
+    }
+    if (this.inputDateRef.current) {
+      this.inputDateRef.current.value = '';
+    }
+    if (this.inputCountryRef.current) {
+      this.inputCountryRef.current.value = '';
+    }
+    if (this.inputPackageRef.current) {
+      this.inputPackageRef.current.checked = false;
+    }
+    if (this.inputDeliveryRef.current) {
+      this.inputDeliveryRef.current.checked = false;
+    }
+    if (this.inputTransferRef.current) {
+      this.inputTransferRef.current.checked = false;
+    }
+    if (this.inputCashPayRef.current) {
+      this.inputCashPayRef.current.checked = false;
+    }
+    if (this.inputCardPayRef.current) {
+      this.inputCardPayRef.current.checked = false;
+    }
   }
 
   checkFormFields() {
@@ -48,7 +75,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     this.setState({ inputTransferValid: transferValid });
     this.setState({ inputPayValid: payValid });
     if (titleValid && dateValid && countryValid && payValid) {
-      this.setState({ statusValid: true });
+      this.setState({ formValid: true });
       return true;
     }
     return false;
@@ -86,10 +113,12 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     };
 
     this.props.addCard(newCard);
+    this.clearFormInputs();
   };
 
   render() {
-    const { inputTitleValid, inputDateValid, inputCountryValid, inputPayValid } = this.state;
+    const { inputTitleValid, inputDateValid, inputCountryValid, inputPayValid, formValid } =
+      this.state;
     return (
       <form onSubmit={this.formSubmit} ref={this.formRef}>
         <div>
@@ -159,7 +188,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             <input
               type="radio"
               id="form__card-pay"
-              value="Card"
+              value="card"
               name="cay"
               ref={this.inputCardPayRef}
             />
@@ -167,8 +196,8 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
           </label>
           {!inputPayValid && <span>Error. Select any option</span>}
         </div>
-
         <button type="submit">Add new card</button>
+        {formValid && <span>Data has been saved</span>}
       </form>
     );
   }

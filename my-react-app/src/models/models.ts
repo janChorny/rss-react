@@ -61,3 +61,8 @@ export interface FormValidState {
   inputPictureValid: boolean;
   inputPictureUrl: string;
 }
+
+export interface InputDateInterface {
+  valid: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
+}

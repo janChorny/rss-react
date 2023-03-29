@@ -8,6 +8,7 @@ import {
   validateText,
 } from '../../utils/FormsValidation';
 import './simpleForm.css';
+import { InputDate } from '../../components/inputDate/InputDate';
 
 export class SimpleForm extends React.Component<FormProps, FormValidState> {
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
@@ -155,22 +156,7 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
             <span className="form__title--span error-span">Error! Min 4 letters</span>
           )}
         </div>
-        <div className="form__date form-block">
-          <label className="form__date--label form-label" htmlFor="form__date">
-            Date:
-          </label>
-          <input
-            className="form__date--input form-input"
-            type="text"
-            id="form__date"
-            ref={this.inputDateRef}
-            placeholder="day.month.year"
-            autoComplete="off"
-          />
-          {!inputDateValid && (
-            <span className="form__date--span error-span">Error! No future date is allowed</span>
-          )}
-        </div>
+        <InputDate valid={inputDateValid} inputRef={this.inputDateRef} />
         <div className="form__country form-block">
           <label className="form__country--label form-label" htmlFor="form__country">
             Country:

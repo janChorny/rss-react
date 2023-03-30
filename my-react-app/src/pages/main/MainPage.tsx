@@ -1,4 +1,4 @@
-import { MyInput } from '../../components/input/MyInput';
+import { SearchInput } from '../../components/inputComponents/searchInput/SearchInput';
 import React, { Component } from 'react';
 import { Products } from '../../components/products/Products';
 import './MainPage.css';
@@ -13,7 +13,7 @@ export class MainPage extends Component<PageTitleProps> {
     return (
       <div>
         <h1 className="page-header">Main page</h1>
-        <MyInput />
+        <SearchInput />
         <Products />
       </div>
     );

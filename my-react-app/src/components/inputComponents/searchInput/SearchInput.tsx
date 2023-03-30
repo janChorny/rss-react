@@ -1,7 +1,7 @@
 import React, { Component, ChangeEvent } from 'react';
-import './MyInput.css';
+import './SearchInput.css';
 
-export class MyInput extends Component {
+export class SearchInput extends Component {
   state = {
     inputValue: '',
   };

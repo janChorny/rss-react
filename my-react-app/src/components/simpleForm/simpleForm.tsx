@@ -8,7 +8,12 @@ import {
   validateText,
 } from '../../utils/FormsValidation';
 import './simpleForm.css';
-import { InputDate } from '../../components/inputDate/InputDate';
+import { InputDate } from '../inputComponents/inputDate/InputDate';
+import { InputText } from '../inputComponents/inputText/InputText';
+import { InputSelect } from '../inputComponents/inputSelect/inputSelect';
+import { InputCheckbox } from '../inputComponents/inputCheckbox/InputCheckbox';
+import { InputRadioButton } from '../inputComponents/inputRadioButton/inputRadioButton';
+import { InputPicture } from '../inputComponents/inputPicture/InputPicture';
 
 export class SimpleForm extends React.Component<FormProps, FormValidState> {
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
@@ -140,119 +145,20 @@ export class SimpleForm extends React.Component<FormProps, FormValidState> {
     } = this.state;
     return (
       <form className="form" onSubmit={this.formSubmit} ref={this.formRef}>
-        <div className="form__title form-block">
-          <label className="form__title--label form-label" htmlFor="form__title-input">
-            Title:
-          </label>
-          <input
-            className="form__title--input form-input"
-            type="text"
-            id="form__title-input"
-            ref={this.inputTitleRef}
-            placeholder="title"
-            autoComplete="off"
-          />
-          {!inputTitleValid && (
-            <span className="form__title--span error-span">Error! Min 4 letters</span>
-          )}
-        </div>
+        <InputText valid={inputTitleValid} inputRef={this.inputTitleRef} />
         <InputDate valid={inputDateValid} inputRef={this.inputDateRef} />
-        <div className="form__country form-block">
-          <label className="form__country--label form-label" htmlFor="form__country">
-            Country:
-          </label>
-          <select
-            className="form__country--select form-select"
-            id="form__country"
-            ref={this.inputCountryRef}
-            defaultValue=""
-          >
-            <option className="form__country--option" disabled></option>
-            <option className="form__country--option" value="USA">
-              USA
-            </option>
-            <option className="form__country--option" value="Canada">
-              Canada
-            </option>
-            <option className="form__country--option" value="Mexico">
-              Mexico
-            </option>
-            <option className="form__country--option" value="Germany">
-              Germany
-            </option>
-          </select>
-          {!inputCountryValid && (
-            <span className="form__country--span error-span">Error! No country selected</span>
-          )}
-        </div>
-        <div className="form__additional form-block">
-          Additional options:
-          <label className="form__additional--label form-label" htmlFor="form__package">
-            <input
-              className="form__additional--input form-input"
-              type="checkbox"
-              id="form__package"
-              ref={this.inputPackageRef}
-            />
-            Package
-          </label>
-          <label className="form__additional form-label" htmlFor="form__delivery">
-            <input
-              className="form__additional--input form-input"
-              type="checkbox"
-              id="form__delivery"
-              ref={this.inputDeliveryRef}
-            />
-            Delivery
-          </label>
-          <label className="form__additional form-label" htmlFor="form__transfer">
-            <input
-              className="form__additional--input form-input"
-              type="checkbox"
-              id="form__transfer"
-              ref={this.inputTransferRef}
-            />
-            Transfer
-          </label>
-        </div>
-        <div className="form__payment form-block">
-          Payment options:
-          <label className="form__payment--label form-label" htmlFor="form__cash-pay">
-            <input
-              className="form__payment--input form-input"
-              type="radio"
-              id="form__cash-pay"
-              value="cash"
-              name="pay"
-              ref={this.inputCashPayRef}
-            />
-            Cash
-          </label>
-          <label className="form__payment--label form-label" htmlFor="form__card-pay">
-            <input
-              className="form__payment--input form-input"
-              type="radio"
-              id="form__card-pay"
-              value="card"
-              name="pay"
-              ref={this.inputCardPayRef}
-            />
-            Card
-          </label>
-          {!inputPayValid && (
-            <span className="form__payment--span error-span">Error. Select any option</span>
-          )}
-        </div>
-        <div className="form__picture form-block">
-          <input
-            className="form__picture--input form-input"
-            type="file"
-            ref={this.inputPictureRef}
-          />
-          {!inputPictureValid && (
-            <span className="form__picture--span error-span">Error. Check selected picture</span>
-          )}
-        </div>
+        <InputSelect valid={inputCountryValid} inputRef={this.inputCountryRef} />
+        <InputCheckbox
+          packageRef={this.inputPackageRef}
+          transferRef={this.inputTransferRef}
+          deliveryRef={this.inputDeliveryRef}
+        />
+        <InputRadioButton
+          valid={inputPayValid}
+          cardPayRef={this.inputCardPayRef}
+          cashPayRef={this.inputCashPayRef}
+        />
+        <InputPicture valid={inputPictureValid} inputRef={this.inputPictureRef} />
         <button className="form__button" type="submit">
           Add new card
         </button>

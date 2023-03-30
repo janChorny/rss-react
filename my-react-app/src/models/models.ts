@@ -66,3 +66,30 @@ export interface InputDateInterface {
   valid: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
 }
+
+export interface InputTextInterface {
+  valid: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
+}
+
+export interface InputSelectInterface {
+  valid: boolean;
+  inputRef: React.RefObject<HTMLSelectElement>;
+}
+
+export interface InputAdditionalServiceInterface {
+  packageRef: React.RefObject<HTMLInputElement>;
+  transferRef: React.RefObject<HTMLInputElement>;
+  deliveryRef: React.RefObject<HTMLInputElement>;
+}
+
+export interface InputPaymentInterface {
+  valid: boolean;
+  cashPayRef: React.RefObject<HTMLInputElement>;
+  cardPayRef: React.RefObject<HTMLInputElement>;
+}
+
+export interface InputPictureInterface {
+  valid: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
+}

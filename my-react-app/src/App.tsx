@@ -16,7 +16,7 @@ export function App() {
 
   return (
     <>
-      <Header />
+      <Header pageTitle={pageTitle} />
       <main className="main">
         <Routes>
           <Route path="/" element={<MainPage setTitle={handlePageTitle} />} />

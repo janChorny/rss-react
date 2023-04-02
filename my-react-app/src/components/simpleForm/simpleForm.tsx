@@ -27,13 +27,14 @@ export function SimpleForm(props: FormProps) {
       title: data.title,
       date: data.date,
       country: data.country,
-      pack: data.additional,
-      transfer: data.additional,
-      delivery: data.additional,
+      additional: data.additional,
       pay: data.pay,
       profilePicture: URL.createObjectURL(data.profilePictureUrl[0]),
     });
     reset();
+    setTimeout(() => {
+      setStatusValid(false);
+    }, 3000);
   };
 
   return (

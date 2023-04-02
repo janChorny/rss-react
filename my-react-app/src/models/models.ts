@@ -32,9 +32,7 @@ export interface FormInput {
   title: string;
   date: string;
   country: string;
-  pack: boolean;
-  transfer: boolean;
-  delivery: boolean;
+  additional: boolean;
   pay: string;
   profilePicture: string;
 }

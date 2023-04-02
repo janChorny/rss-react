@@ -3,7 +3,7 @@ import React from 'react';
 import './FormCard.css';
 
 export function FormCard(props: FormCardInput) {
-  const { title, date, country, pack, delivery, transfer, pay, profilePicture } = props.card;
+  const { title, date, country, additional, pay, profilePicture } = props.card;
 
   return (
     <div className="form-card">
@@ -11,12 +11,8 @@ export function FormCard(props: FormCardInput) {
         <h3 className="form-card__title">Name: {title}</h3>
         <div className="form-card__date">Date: {date}</div>
         <div className="form-card__country">Country: {country}</div>
-        <div className="form-card__additional">
-          Options:
-          {pack && <span> pack</span>}
-          {delivery && <span> delivery</span>}
-          {transfer && <span> transfer</span>}
-        </div>
+        {additional && <div className="form-card__additional">Options: {additional}</div>}
+        {/* <div className="form-card__additional">Options: {additional}</div> */}
         <div className="form-card__pay">Pay: {pay}</div>
         <div className="form-card__image-container">
           <img

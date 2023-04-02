@@ -10,6 +10,7 @@ export function InputCheckbox({ register }: InputAdditionalServiceInterface) {
           className="form__additional--input form-input"
           type="checkbox"
           id="form__package"
+          value=" package "
           {...register}
         />
         Package
@@ -19,6 +20,7 @@ export function InputCheckbox({ register }: InputAdditionalServiceInterface) {
           className="form__additional--input form-input"
           type="checkbox"
           id="form__delivery"
+          value=" delivery "
           {...register}
         />
         Delivery
@@ -28,6 +30,7 @@ export function InputCheckbox({ register }: InputAdditionalServiceInterface) {
           className="form__additional--input form-input"
           type="checkbox"
           id="form__transfer"
+          value=" transfer "
           {...register}
         />
         Transfer

@@ -1,3 +1,5 @@
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+
 export interface ProductModel {
   id: number;
   title: string;
@@ -37,6 +39,15 @@ export interface FormInput {
   profilePicture: string;
 }
 
+export interface FormCardState {
+  title: string;
+  date: string;
+  country: string;
+  additional: boolean;
+  pay: string;
+  profilePictureUrl: FileList;
+}
+
 export interface FormCardInput {
   card: FormInput;
 }
@@ -63,33 +74,30 @@ export interface FormValidState {
 }
 
 export interface InputDateInterface {
-  valid: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<'date'>;
+  error: FieldError | undefined;
 }
 
 export interface InputTextInterface {
-  valid: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<'title'>;
+  error: FieldError | undefined;
 }
 
 export interface InputSelectInterface {
-  valid: boolean;
-  inputRef: React.RefObject<HTMLSelectElement>;
+  register: UseFormRegisterReturn<'country'>;
+  error: FieldError | undefined;
 }
 
 export interface InputAdditionalServiceInterface {
-  packageRef: React.RefObject<HTMLInputElement>;
-  transferRef: React.RefObject<HTMLInputElement>;
-  deliveryRef: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<'additional'>;
 }
 
 export interface InputPaymentInterface {
-  valid: boolean;
-  cashPayRef: React.RefObject<HTMLInputElement>;
-  cardPayRef: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<'pay'>;
+  error: FieldError | undefined;
 }
 
 export interface InputPictureInterface {
-  valid: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<'profilePictureUrl'>;
+  error: FieldError | undefined;
 }

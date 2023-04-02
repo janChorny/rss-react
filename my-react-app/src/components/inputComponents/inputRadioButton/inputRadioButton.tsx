@@ -1,7 +1,7 @@
 import { InputPaymentInterface } from 'models/models';
 import React from 'react';
 
-export function InputRadioButton({ valid, cashPayRef, cardPayRef }: InputPaymentInterface) {
+export function InputRadioButton({ register, error }: InputPaymentInterface) {
   return (
     <div className="form__payment form-block">
       Payment options:
@@ -11,8 +11,7 @@ export function InputRadioButton({ valid, cashPayRef, cardPayRef }: InputPayment
           type="radio"
           id="form__cash-pay"
           value="cash"
-          name="pay"
-          ref={cashPayRef}
+          {...register}
         />
         Cash
       </label>
@@ -22,12 +21,11 @@ export function InputRadioButton({ valid, cashPayRef, cardPayRef }: InputPayment
           type="radio"
           id="form__card-pay"
           value="card"
-          name="pay"
-          ref={cardPayRef}
+          {...register}
         />
         Card
       </label>
-      {!valid && <span className="form__payment--span error-span">Error. Select any option</span>}
+      {error && <span className="form__payment--span error-span">Error. Select any option</span>}
     </div>
   );
 }

@@ -1,11 +1,7 @@
 import { InputAdditionalServiceInterface } from 'models/models';
 import React from 'react';
 
-export function InputCheckbox({
-  deliveryRef,
-  transferRef,
-  packageRef,
-}: InputAdditionalServiceInterface) {
+export function InputCheckbox({ register }: InputAdditionalServiceInterface) {
   return (
     <div className="form__additional form-block">
       Additional options:
@@ -14,7 +10,7 @@ export function InputCheckbox({
           className="form__additional--input form-input"
           type="checkbox"
           id="form__package"
-          ref={packageRef}
+          {...register}
         />
         Package
       </label>
@@ -23,7 +19,7 @@ export function InputCheckbox({
           className="form__additional--input form-input"
           type="checkbox"
           id="form__delivery"
-          ref={deliveryRef}
+          {...register}
         />
         Delivery
       </label>
@@ -32,7 +28,7 @@ export function InputCheckbox({
           className="form__additional--input form-input"
           type="checkbox"
           id="form__transfer"
-          ref={transferRef}
+          {...register}
         />
         Transfer
       </label>

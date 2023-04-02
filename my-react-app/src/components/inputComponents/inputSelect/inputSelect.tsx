@@ -1,7 +1,7 @@
 import { InputSelectInterface } from 'models/models';
 import React from 'react';
 
-export function InputSelect({ valid, inputRef }: InputSelectInterface) {
+export function InputSelect({ register, error }: InputSelectInterface) {
   return (
     <div className="form__country form-block">
       <label className="form__country--label form-label" htmlFor="form__country">
@@ -10,7 +10,7 @@ export function InputSelect({ valid, inputRef }: InputSelectInterface) {
       <select
         className="form__country--select form-select"
         id="form__country"
-        ref={inputRef}
+        {...register}
         defaultValue=""
       >
         <option className="form__country--option" disabled></option>
@@ -27,7 +27,7 @@ export function InputSelect({ valid, inputRef }: InputSelectInterface) {
           Germany
         </option>
       </select>
-      {!valid && <span className="form__country--span error-span">Error! No country selected</span>}
+      {error && <span className="form__country--span error-span">Error! No country selected</span>}
     </div>
   );
 }

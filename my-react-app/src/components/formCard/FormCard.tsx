@@ -12,7 +12,6 @@ export function FormCard(props: FormCardInput) {
         <div className="form-card__date">Date: {date}</div>
         <div className="form-card__country">Country: {country}</div>
         {additional && <div className="form-card__additional">Options: {additional}</div>}
-        {/* <div className="form-card__additional">Options: {additional}</div> */}
         <div className="form-card__pay">Pay: {pay}</div>
         <div className="form-card__image-container">
           <img

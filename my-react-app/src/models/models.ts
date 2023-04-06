@@ -100,6 +100,10 @@ export interface InputPictureInterface {
   error: FieldError | undefined;
 }
 
+export interface SearchInputInterface {
+  setInputValue: (text: string) => void;
+}
+
 //Rick and Morty api https://rickandmortyapi.com/api/character
 export interface Root {
   info: Info;

@@ -4,6 +4,7 @@ import { Products } from '../../components/products/Products';
 import './MainPage.css';
 import { PageTitleProps, Result } from 'models/models';
 import { baseApi } from '../../utils/constants';
+import { Preloader } from '../../components/preloader/Preloader';
 
 export function MainPage(props: PageTitleProps) {
   const [searchValue, setSearchValue] = React.useState(localStorage.getItem('searchValue') ?? '');
@@ -41,7 +42,12 @@ export function MainPage(props: PageTitleProps) {
       <h1 className="page-header">Main page</h1>
       <SearchInput setInputValue={setSearchValue} />
       {error && <div>{error}</div>}
-      {isLoading && <div> Progressing...</div>}
+      {isLoading && (
+        <div className="main-preloader">
+          {' '}
+          <Preloader />
+        </div>
+      )}
       {/* <Products /> */}
       {cards && (
         <div>

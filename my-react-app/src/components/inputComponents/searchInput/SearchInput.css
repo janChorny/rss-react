@@ -7,10 +7,33 @@
   margin-bottom: 3rem;
 }
 
+.search__form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .search__input-text{
-  width: 15rem;
+  width: 10rem;
   height: 2.5rem;
   padding: 0.5rem;
   border: 1px solid teal;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.search__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 2.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  background-color: teal;
+  color: #fff;
+}
+
+.search__button:hover {
+  cursor: pointer;
+  background-color: rgb(1, 90, 90);
 }

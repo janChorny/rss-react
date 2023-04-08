@@ -141,3 +141,7 @@ export interface Location {
   name: string;
   url: string;
 }
+
+export interface MainCardInput {
+  card: Result;
+}

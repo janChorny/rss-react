@@ -28,7 +28,7 @@ export function SearchInput(props: SearchInputInterface) {
 
   return (
     <div className="search__input-container">
-      <form onSubmit={handleFormSubmit}>
+      <form className="search__form" onSubmit={handleFormSubmit}>
         <input
           className="search__input-text"
           type="search"
@@ -36,7 +36,9 @@ export function SearchInput(props: SearchInputInterface) {
           value={searchValue}
           onChange={changeState}
         />
-        <button type="submit">Search</button>
+        <button className="search__button" type="submit">
+          Search
+        </button>
       </form>
     </div>
   );

@@ -5,12 +5,17 @@ import { PageTitleProps, Result } from 'models/models';
 import { Preloader } from '../../components/preloader/Preloader';
 import { getCharacters } from '../../utils/api';
 import { Card } from '../../components/card/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { saveSearchResults } from '../../store/reducer/searchSlice';
 
 export function MainPage(props: PageTitleProps) {
-  const [searchValue, setSearchValue] = React.useState(localStorage.getItem('searchValue') ?? '');
+  const searchCards = useSelector<RootState, string>((state) => state.searchReducer.searchValue);
+  const [searchValue, setSearchValue] = React.useState(searchCards);
   const [cards, setCards] = React.useState<Result[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     props.setTitle('Main page');
@@ -22,6 +27,7 @@ export function MainPage(props: PageTitleProps) {
     const getSearchedCharacters = async () => {
       try {
         const receivedCharacters = await getCharacters(searchValue);
+        dispatch(saveSearchResults(searchValue));
         setCards(receivedCharacters);
         setIsLoading(false);
         setError('');
@@ -34,7 +40,7 @@ export function MainPage(props: PageTitleProps) {
     setTimeout(() => {
       getSearchedCharacters();
     }, 2000);
-  }, [searchValue]);
+  }, [dispatch, searchValue]);
 
   return (
     <div>

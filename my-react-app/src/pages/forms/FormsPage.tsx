@@ -15,10 +15,7 @@ export function FormsPage(props: PageTitleProps) {
     props.setTitle('Forms page');
   });
 
-  const [cards, setCards] = React.useState<FormInput[]>([]);
-
   const addNewCard = (newCard: FormInput) => {
-    setCards([...cards, newCard]);
     dispatch(saveFormCards(newCard));
   };
 

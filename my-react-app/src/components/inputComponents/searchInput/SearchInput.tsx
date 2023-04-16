@@ -1,30 +1,21 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import './SearchInput.css';
-import { SearchInputInterface } from 'models/models';
+import { useAppDispatch } from '../../../store/store';
+import { useSelector } from 'react-redux';
+import { getSearchValue, saveSearchResults } from '../../../store/reducer/searchSlice';
 
-export function SearchInput(props: SearchInputInterface) {
-  const [searchValue, setSearchValue] = React.useState(localStorage.getItem('searchValue') ?? '');
-  const searchValueRef = React.useRef<string>();
-
-  useEffect(() => {
-    searchValueRef.current = searchValue;
-  }, [searchValue]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchValue', searchValueRef.current || '');
-    };
-  }, []);
-
-  const changeState = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
+export function SearchInput() {
+  const getValue = useSelector(getSearchValue);
+  const [searchValue, setSearchValue] = React.useState(getValue);
+  const dispatch = useAppDispatch();
 
   const handleFormSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    localStorage.setItem('searchValue', searchValueRef.current || '');
-    props.setInputValue(searchValue);
+    dispatch(saveSearchResults(searchValue));
   };
+
+  const changeInputValue = (event: ChangeEvent<HTMLInputElement>) =>
+    setSearchValue(event.currentTarget.value);
 
   return (
     <div className="search__input-container">
@@ -34,7 +25,7 @@ export function SearchInput(props: SearchInputInterface) {
           type="search"
           placeholder="Input value"
           value={searchValue}
-          onChange={changeState}
+          onChange={changeInputValue}
         />
         <button className="search__button" type="submit">
           Search

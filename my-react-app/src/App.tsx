@@ -7,7 +7,7 @@ import { Header } from './components/header/Header';
 import { Footer } from './components/footer/Footer';
 import { FormsPage } from './pages/forms/FormsPage';
 
-export function App() {
+export default function App() {
   const [pageTitle, setPageTitle] = React.useState('');
 
   const handlePageTitle = React.useCallback((pageTitle: React.SetStateAction<string>) => {

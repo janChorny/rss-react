@@ -4,7 +4,13 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   base: '/',
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [['istanbul']],
+      },
+    }),
+  ],
   test: {
     globals: true,
     environment: 'happy-dom',

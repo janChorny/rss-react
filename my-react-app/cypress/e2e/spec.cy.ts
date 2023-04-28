@@ -1,4 +1,4 @@
-import { port } from '../../server';
+import '@cypress/code-coverage/support';
 
 describe('My First Test', () => {
   it('Gets, types and asserts', () => {

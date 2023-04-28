@@ -13,6 +13,7 @@
     "lint:fix": "eslint --ext .ts,.tsx src --fix",
     "test": "vitest",
     "coverage": "vitest run --coverage",
+    "cypress:open": "cypress open",
     "cypress:test": "cypress run --env coverage=true",
     "cypress:coverage": "npx nyc report --reporter=text-summary"
   },

@@ -1,19 +1,25 @@
 import '@cypress/code-coverage/support';
 
 describe('My First Test', () => {
-  it('Gets, types and asserts', () => {
+  it('Starts with main page', () => {
     cy.visit(`/`);
-
+    cy.contains('Characters').click();
+    cy.contains('About').click();
     cy.contains('Forms').click();
+    cy.visit(`/hello`).contains('Not found page');
+  });
 
-    // Should be on a new URL which
-    // includes '/commands/actions'
+  it('Checks Form page', () => {
+    cy.visit(`/forms`);
+    cy.contains('Forms').click();
     cy.url().should('include', '/forms');
-
-    // Get an input, type into it
     cy.get('.form__title--input').type('title');
-
-    //  Verify that the value has been updated
-    cy.get('.form__title--input').should('have.value', 'title');
+    cy.get('.form__date--input').type('2010-10-10');
+    cy.get('.form__country--select').select('USA');
+    cy.get('[id=form__package]').click();
+    cy.get('[id=form__cash-pay]').click();
+    cy.get('.form__picture--input').selectFile('src/assets/react.svg');
+    cy.get('.form__button').click();
+    cy.get('.form-card');
   });
 });

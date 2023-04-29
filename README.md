@@ -1,5 +1,17 @@
 ## rss react app
 
+### SSR task
+
+To start cypress testing use 
+```
+npm run cypress:test
+```
+
+To check cypress testing coverage use
+```
+npm run cypress:coverage
+```
+
 ### Forms task
 
 1. Clone repository

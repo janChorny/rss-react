@@ -20,7 +20,7 @@ export function MainPage(props: PageTitleProps) {
     <div>
       <h1 className="page-header">Main page</h1>
       <SearchInput />
-      {error && <div>An error occurred!</div>}
+      {error && <div className="main-page__error">An error occurred!</div>}
       {isLoading && (
         <div className="main-preloader">
           {' '}

@@ -22,4 +22,16 @@ describe('My First Test', () => {
     cy.get('.form__button').click();
     cy.get('.form-card');
   });
+
+  it('Checks main page', () => {
+    cy.visit(`/`);
+    cy.get('.search__input-text').type('Morty');
+    cy.get('.search__button').click();
+    cy.get('.cards-container').contains('Morty');
+    cy.get('.card').first().click();
+    cy.get('.search__input-text').clear();
+    cy.get('.search__input-text').type('PBVSWMQ');
+    cy.get('.search__button').click();
+    cy.get('.main-page__error').contains('An error occurred!');
+  });
 });

@@ -2,12 +2,30 @@
 
 ### SSR task
 
-To start cypress testing use 
+1. Clone repository
+```
+git clone https://github.com/janChorny/rss-react.git
+```
+2. Go to the working directory
+```
+cd rss-react
+```
+3. Switch to "ssr" branch
+```
+git checkout ssr
+```
+```
+cd my-react-app
+```
+3. Install dependencies
+```
+npm i
+```
+4. To start cypress testing use 
 ```
 npm run cypress:test
 ```
-
-To check cypress testing coverage use
+5. To check cypress testing coverage use
 ```
 npm run cypress:coverage
 ```

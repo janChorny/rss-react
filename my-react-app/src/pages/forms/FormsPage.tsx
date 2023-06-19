@@ -9,7 +9,7 @@ import { saveFormCards } from '../../store/reducer/formSlice';
 
 export function FormsPage(props: PageTitleProps) {
   const dispatch = useDispatch();
-  const formCards = useSelector<RootState, FormInput[]>((state) => state.formReducer);
+  const formCards = useSelector((state: RootState) => state.formReducer);
 
   React.useEffect(() => {
     props.setTitle('Forms page');

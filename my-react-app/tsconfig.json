@@ -23,8 +23,7 @@
   "include": [
     "./src/**/*",
     "styled.d.ts",
-    "./jest-setup.ts",
-    "src/__tests__/.test copy.tsx"
+    "./jest-setup.ts"
   ],
   "exclude": [
     "./instrumented/**/*"

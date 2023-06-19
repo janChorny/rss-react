@@ -1,31 +1,22 @@
 export const validateText = (text: string) => {
-  if (text.length > 3) return true;
-  return false;
+  return text.length > 3;
 };
 
 export const validateDate = (date: string) => {
-  if (new Date(date) < new Date()) {
-    return true;
-  }
-  return false;
+  return new Date(date) < new Date();
 };
 
 export const validateCountry = (country: string) => {
-  if (country.length) return true;
-  return false;
+  return Boolean(country.length);
 };
 
 export const validatePayment = (
   firstRadio: React.RefObject<HTMLInputElement>,
   secondRadio: React.RefObject<HTMLInputElement>
 ) => {
-  if (firstRadio.current?.checked || secondRadio.current?.checked) {
-    return true;
-  }
-  return false;
+  return firstRadio.current?.checked || secondRadio.current?.checked;
 };
 
 export const validatePicture = (picture: string) => {
-  if (picture.length) return true;
-  return false;
+  return Boolean(picture.length);
 };

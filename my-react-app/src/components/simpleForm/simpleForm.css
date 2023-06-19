@@ -1,0 +1,56 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  gap: 0.5rem;
+  border: 0.1rem solid teal;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.form-block {
+  margin: 0.1rem;
+  padding: 0.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.error-span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
+.message-span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+}
+
+.form__button {
+  margin: auto;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 0.1rem solid teal;
+  border-radius: 0.5rem;
+}
+
+.form__button:hover {
+  background-color: teal;
+}
+
+.form__additional .form-input,
+.form__payment .form-input {
+  min-width: 1rem;
+  min-height: 1rem;
+  margin: 0.1rem;
+}

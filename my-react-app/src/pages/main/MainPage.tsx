@@ -1,19 +1,61 @@
 import { SearchInput } from '../../components/inputComponents/searchInput/SearchInput';
 import React, { useEffect } from 'react';
-import { Products } from '../../components/products/Products';
 import './MainPage.css';
-import { PageTitleProps } from 'models/models';
+import { PageTitleProps, Result } from 'models/models';
+import { Preloader } from '../../components/preloader/Preloader';
+import { getCharacters } from '../../utils/api';
+import { Card } from '../../components/card/Card';
 
 export function MainPage(props: PageTitleProps) {
+  const [searchValue, setSearchValue] = React.useState(localStorage.getItem('searchValue') ?? '');
+  const [cards, setCards] = React.useState<Result[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState('');
+
   useEffect(() => {
     props.setTitle('Main page');
   });
 
+  useEffect(() => {
+    setIsLoading(true);
+
+    const getSearchedCharacters = async () => {
+      try {
+        const receivedCharacters = await getCharacters(searchValue);
+        setCards(receivedCharacters);
+        setIsLoading(false);
+        setError('');
+      } catch (err) {
+        setIsLoading(false);
+        setError('Could not fetch the data');
+      }
+    };
+
+    setTimeout(() => {
+      getSearchedCharacters();
+    }, 2000);
+  }, [searchValue]);
+
   return (
     <div>
       <h1 className="page-header">Main page</h1>
-      <SearchInput />
-      <Products />
+      <SearchInput setInputValue={setSearchValue} />
+      {error && <div>{error}</div>}
+      {isLoading && (
+        <div className="main-preloader">
+          {' '}
+          <Preloader />
+        </div>
+      )}
+      {cards ? (
+        <div className="cards-container">
+          {cards.map((card) => (
+            <Card key={card.id} card={card} />
+          ))}
+        </div>
+      ) : (
+        <div className="not-found">No such characters found</div>
+      )}
     </div>
   );
 }

@@ -16,7 +16,7 @@ export function Navigation() {
             : {}
         }
       >
-        Products
+        Characters
       </NavLink>
       <NavLink
         className="navigation-link"

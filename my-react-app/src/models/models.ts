@@ -1,3 +1,5 @@
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+
 export interface ProductModel {
   id: number;
   title: string;
@@ -30,11 +32,18 @@ export interface FormInput {
   title: string;
   date: string;
   country: string;
-  pack: boolean;
-  transfer: boolean;
-  delivery: boolean;
+  additional: boolean;
   pay: string;
   profilePicture: string;
+}
+
+export interface FormCardState {
+  title: string;
+  date: string;
+  country: string;
+  additional: boolean;
+  pay: string;
+  profilePictureUrl: FileList;
 }
 
 export interface FormCardInput {
@@ -60,4 +69,33 @@ export interface FormValidState {
   formValid: boolean;
   inputPictureValid: boolean;
   inputPictureUrl: string;
+}
+
+export interface InputDateInterface {
+  register: UseFormRegisterReturn<'date'>;
+  error: FieldError | undefined;
+}
+
+export interface InputTextInterface {
+  register: UseFormRegisterReturn<'title'>;
+  error: FieldError | undefined;
+}
+
+export interface InputSelectInterface {
+  register: UseFormRegisterReturn<'country'>;
+  error: FieldError | undefined;
+}
+
+export interface InputAdditionalServiceInterface {
+  register: UseFormRegisterReturn<'additional'>;
+}
+
+export interface InputPaymentInterface {
+  register: UseFormRegisterReturn<'pay'>;
+  error: FieldError | undefined;
+}
+
+export interface InputPictureInterface {
+  register: UseFormRegisterReturn<'profilePictureUrl'>;
+  error: FieldError | undefined;
 }

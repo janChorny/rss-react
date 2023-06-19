@@ -2,8 +2,15 @@
   width: 100%;
   padding: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background-color: grey;
+}
+
+.header__current {
+  display: flex;
+  color: #fff;
+  margin-top: 1rem;
 }

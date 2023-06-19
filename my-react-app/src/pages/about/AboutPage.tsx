@@ -1,17 +1,15 @@
 import { PageTitleProps } from 'models/models';
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import './AboutPage.css';
 
-export class AboutPage extends Component<PageTitleProps> {
-  componentDidMount() {
-    this.props.setTitle('About page');
-  }
+export function AboutPage(props: PageTitleProps) {
+  useEffect(() => {
+    props.setTitle('About page');
+  });
 
-  render() {
-    return (
-      <div>
-        <h1 className="page-header">About page</h1>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1 className="page-header">About page</h1>
+    </div>
+  );
 }

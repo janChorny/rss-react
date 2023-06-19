@@ -1,17 +1,15 @@
 import { PageTitleProps } from 'models/models';
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import './NotFoundPage.css';
 
-export class NotFoundPage extends Component<PageTitleProps> {
-  componentDidMount() {
-    this.props.setTitle('Not found page');
-  }
+export function NotFoundPage(props: PageTitleProps) {
+  useEffect(() => {
+    props.setTitle('Not found page');
+  });
 
-  render() {
-    return (
-      <div>
-        <h1 className="page-header">Not found page</h1>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1 className="page-header">Not found page</h1>
+    </div>
+  );
 }

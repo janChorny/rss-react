@@ -1,21 +1,19 @@
-import { MyInput } from '../../components/input/MyInput';
-import React, { Component } from 'react';
+import { SearchInput } from '../../components/inputComponents/searchInput/SearchInput';
+import React, { useEffect } from 'react';
 import { Products } from '../../components/products/Products';
 import './MainPage.css';
 import { PageTitleProps } from 'models/models';
 
-export class MainPage extends Component<PageTitleProps> {
-  componentDidMount() {
-    this.props.setTitle('About page');
-  }
+export function MainPage(props: PageTitleProps) {
+  useEffect(() => {
+    props.setTitle('Main page');
+  });
 
-  render() {
-    return (
-      <div>
-        <h1 className="page-header">Main page</h1>
-        <MyInput />
-        <Products />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1 className="page-header">Main page</h1>
+      <SearchInput />
+      <Products />
+    </div>
+  );
 }

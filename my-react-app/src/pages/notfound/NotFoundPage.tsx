@@ -1,6 +1,5 @@
 import { PageTitleProps } from 'models/models';
 import React, { useEffect } from 'react';
-import './NotFoundPage.css';
 
 export function NotFoundPage(props: PageTitleProps) {
   useEffect(() => {

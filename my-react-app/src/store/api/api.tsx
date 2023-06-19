@@ -11,7 +11,7 @@ export const cardApi = createApi({
         url: 'character',
         params: { name: arg.search },
       }),
-      transformResponse: (response: Root) => response.results ?? [],
+      transformResponse: (response: Root) => response.results,
     }),
   }),
 });

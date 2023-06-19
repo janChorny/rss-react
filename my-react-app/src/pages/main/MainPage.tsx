@@ -3,44 +3,24 @@ import React, { useEffect } from 'react';
 import './MainPage.css';
 import { PageTitleProps, Result } from 'models/models';
 import { Preloader } from '../../components/preloader/Preloader';
-import { getCharacters } from '../../utils/api';
+import { useGetCharactersQuery } from '../../store/api/api';
 import { Card } from '../../components/card/Card';
+import { useSelector } from 'react-redux';
+import { getSearchValue } from '../../store/reducer/searchSlice';
 
 export function MainPage(props: PageTitleProps) {
-  const [searchValue, setSearchValue] = React.useState(localStorage.getItem('searchValue') ?? '');
-  const [cards, setCards] = React.useState<Result[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState('');
+  const search = useSelector(getSearchValue);
+  const { data: cards, error, isLoading } = useGetCharactersQuery({ search });
 
   useEffect(() => {
     props.setTitle('Main page');
   });
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    const getSearchedCharacters = async () => {
-      try {
-        const receivedCharacters = await getCharacters(searchValue);
-        setCards(receivedCharacters);
-        setIsLoading(false);
-        setError('');
-      } catch (err) {
-        setIsLoading(false);
-        setError('Could not fetch the data');
-      }
-    };
-
-    setTimeout(() => {
-      getSearchedCharacters();
-    }, 2000);
-  }, [searchValue]);
-
   return (
     <div>
       <h1 className="page-header">Main page</h1>
-      <SearchInput setInputValue={setSearchValue} />
-      {error && <div>{error}</div>}
+      <SearchInput />
+      {error && <div>An error occurred!</div>}
       {isLoading && (
         <div className="main-preloader">
           {' '}
@@ -49,7 +29,7 @@ export function MainPage(props: PageTitleProps) {
       )}
       {cards ? (
         <div className="cards-container">
-          {cards.map((card) => (
+          {cards.map((card: Result) => (
             <Card key={card.id} card={card} />
           ))}
         </div>

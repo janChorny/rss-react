@@ -145,3 +145,7 @@ export interface Location {
 export interface MainCardInput {
   card: Result;
 }
+
+export interface GetSearchArgs {
+  search: string;
+}
